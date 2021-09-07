@@ -30,6 +30,18 @@ class Character:
     def CountCritic(self):
         return self.accuracy * self.luck * self.attack_speed
 
+    def ToString(self):
+        return "Damage: %s, Hp: %s, Luck: %s, Accuracy: %s, " \
+               "Attack Speed: %s, Crit Power: %s, Fear: %s, Armor: %s"%(str(self.damage),
+                                                                        str(self.hp),
+                                                                        str(self.luck),
+                                                                        str(self.accuracy),
+                                                                        str(self.attack_speed),
+                                                                        str(self.crit_power),
+                                                                        str(self.fear),
+                                                                        str(self.armor)
+                                                                        )
+
 
 def Prediction(char1, char2):
     if abs(char1.hp / (char2.Dps() * (1 - char1.armor / 100)) - char2.hp / (char1.Dps() * (1 - char1.armor / 100))) > 4:
@@ -76,8 +88,28 @@ def Fight(char1, char2):
 
 
 def main():
-    Char1 = Character(9, 83, 0.4, 0.8, 2, 1.4, 14, 34)
-    Char2 = Character(4, 98, 0.6, 1, 4, 1.1, 20, 15)
+    Char1 = Character(
+                      rnd.randint(1, 10),
+                      rnd.randint(1, 100),
+                      rnd.random(),
+                      rnd.random(),
+                      rnd.randint(1, 5),
+                      rnd.randint(1, 2) + rnd.random(),
+                      rnd.randint(1, 30),
+                      rnd.randint(1, 50)
+                      )
+    Char2 = Character(
+                      rnd.randint(1, 10),
+                      rnd.randint(1, 100),
+                      rnd.random(),
+                      rnd.random(),
+                      rnd.randint(1, 5),
+                      rnd.randint(1, 2) + rnd.random(),
+                      rnd.randint(1, 30),
+                      rnd.randint(1, 50)
+                     )
+    print("Char1 " + Char1.ToString())
+    print("Char2 " + Char2.ToString())
     print(Prediction(Char1, Char2))
 
 
